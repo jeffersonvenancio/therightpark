@@ -15,7 +15,7 @@ url = "http://localhost:8080"
 # data = {'slot_id': 5629499534213120, 'car_rfid':'ASD12345678'}
 # resp = requests.post(url, data=data, headers=headers)
 
-# Atualizar park com uma saida
+# Criar uma vaga
 url += "/api/slots/"
 data = {'label' : 'Vaga 2', 'pref' : True}
 resp = requests.post(url, data=data, headers=headers)
