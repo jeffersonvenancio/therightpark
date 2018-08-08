@@ -11,8 +11,13 @@ parks = Blueprint('parks', __name__)
 
 @parks.route('/', methods=['GET'])
 def get_all():
-    parks = [u.to_dict() for u in Park.query().fetch()]
-    return json.dumps("")
+
+    print [p.to_dict() for p in Park.query().fetch()]
+    parks = [p.to_dict() for p in Park.query().fetch()]
+
+    print parks
+
+    return json.dumps(parks)
 
 @parks.route('/<int:park_id>', methods=['GET'])
 def get_by_id(park_id):
