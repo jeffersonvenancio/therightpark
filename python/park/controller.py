@@ -11,12 +11,7 @@ parks = Blueprint('parks', __name__)
 
 @parks.route('/', methods=['GET'])
 def get_all():
-
-    print [p.to_dict() for p in Park.query().fetch()]
     parks = [p.to_dict() for p in Park.query().fetch()]
-
-    print parks
-
     return json.dumps(parks)
 
 @parks.route('/<int:park_id>', methods=['GET'])
@@ -36,7 +31,7 @@ def add():
 
     park.put()
 
-    return '', 204
+    return json.dumps(park.to_dict)
 
 @parks.route('/', methods=['PUT'], strict_slashes=False)
 def update():
@@ -49,5 +44,5 @@ def update():
 
     park.put()
 
-    return '', 204
+    return json.dumps(park.to_dict())
 
