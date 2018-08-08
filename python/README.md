@@ -1,5 +1,5 @@
 # TheRightParKing
-Repositório para a solução do BarzingaNow?
+Repositório para a solução do TheRightParKing?
 
 Antes de tudo... use python 2.7...
 
