@@ -1,4 +1,4 @@
-# Barzinga Now 
+# TheRightParKing
 Repositório para a solução do BarzingaNow?
 
 Antes de tudo... use python 2.7...
@@ -20,10 +20,10 @@ SE FALHAR POR PERMISSÃO???
 	/home/[SEU_USUARIO_LOGADO_NA_SUA_MAQUINA]/.config/gcloud
 
 QUER FAZER DEPLOY NO GAE???
- - appcfg.py -A barzinganow -V v1 update ../python/ --noauth_local_webserver
-
+ - gcloud app deploy app.yml -v v1
+ 
 SE FALAR QUE VC NÂO TEM PERMISSÃO, APARE SEU OAUTH CACHE:
  - rm ~/.appcfg_oauth2_tokens
 
  TA RODANDO A APLICAÇÂO NENE? ENTÃO:
- http://localhost:8080/web/main.html
+ http://localhost:8080/

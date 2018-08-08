@@ -1,4 +1,4 @@
-import json
+import json, datetime
 
 from flask import Blueprint, request, session
 from google.appengine.api import search
@@ -23,11 +23,18 @@ def get_by_id(park_id):
 def add():
     slot_id = request.form['slot_id']
     car_rfid = request.form['car_rfid']
+    park_id = request.form['park_id']
 
     slot = Slot.get_by_id(int(slot_id))
     car = Car.query().filter(Car.rfid == car_rfid).get()
+    park = Park.get_by_id(int(park_id))
 
-    park = Park(slot=slot.key, car=car.key, regular = False)
+    if not park :
+        park = Park(slot=slot.key, car=car.key, regular = car.pref == slot.pref)
+    else:
+        now = datetime.datetime.now()
+        park.dateOut = now
+
     park.put()
 
     return '', 204
