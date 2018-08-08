@@ -10,12 +10,12 @@ slots = Blueprint('slots', __name__)
 @slots.route('/', methods=['GET'])
 def get_all():
     slots = [u.to_dict() for u in Slot.query().fetch()]
-    return json.dumps(slots)
+    return json.dumps(slots.to_dict())
 
 @slots.route('/<int:slot_id>', methods=['GET'])
 def get_by_id(slot_id):
     slot = Car.get_by_id(slot_id).to_dict()
-    return json.dumps(slot)
+    return json.dumps(slot.to_dict())
 
 
 @slots.route('/', methods=['POST'], strict_slashes=False)
@@ -26,4 +26,4 @@ def add():
     slot = Slot(label=label, pref=False)
     slot.put()
 
-    return '', 204
+    return json.dumps(slot.to_dict())

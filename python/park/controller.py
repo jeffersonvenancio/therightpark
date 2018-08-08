@@ -11,7 +11,17 @@ parks = Blueprint('parks', __name__)
 
 @parks.route('/', methods=['GET'])
 def get_all():
-    parks = [p.to_dict() for p in Park.query().fetch()]
+    slots = Slot.query().fetch()
+
+    park_1 = Park.query().filter(Park.slot == slots[0].key).order(Park.dateIn).fetch(1)
+    park_2 = Park.query().filter(Park.slot == slots[1].key).order(Park.dateIn).fetch(1)
+
+    parks = []
+    if len(park_1) > 0:
+        parks.append(park_1[0].to_dict())
+    if len(park_2) > 0:
+        parks.append(park_2[0].to_dict())
+
     return json.dumps(parks)
 
 @parks.route('/<int:park_id>', methods=['GET'])
