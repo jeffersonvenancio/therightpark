@@ -37,7 +37,7 @@ def add():
     slot = Slot.get_by_id(int(slot_id))
     car = Car.query().filter(Car.rfid == car_rfid).get()
 
-    park = Park(slot=slot.key, car=car.key, regular = car.pref == slot.pref)
+    park = Park(slot=slot.key, car=car.key, regular = not(slot.pref and not car.pref))
 
     park.put()
 
