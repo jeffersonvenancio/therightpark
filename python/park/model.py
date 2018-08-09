@@ -28,5 +28,6 @@ class Park(ndb.Model):
         result['slot'] = slot
 
         result['regular'] = self.regular
+        result['dateIn'] = self.dateIn.strftime("%d/%m/%Y  %H:%M:%S%z")
 
         return result

@@ -5,8 +5,10 @@ class Slot(ndb.Model):
     pref = ndb.BooleanProperty()
 
     def to_dict(self):
-        result = super(Slot, self).to_dict()
+        result = {}
         result['id'] = self.key.id()
+        result['label'] = self.label
+        result['pref'] = self.pref
 
         return result
 

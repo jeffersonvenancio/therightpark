@@ -41,14 +41,16 @@ def add():
 
     park.put()
 
-    return json.dumps(park.to_dict)
+    park = Park.get_by_id(int(park.key.id()))
+
+    return json.dumps(park.to_dict())
 
 @parks.route('/', methods=['PUT'], strict_slashes=False)
 def update():
     park_id = request.form['park_id']
 
     park = Park.get_by_id(int(park_id))
-
+    print park
     now = datetime.datetime.now()
     park.dateOut = now
 
