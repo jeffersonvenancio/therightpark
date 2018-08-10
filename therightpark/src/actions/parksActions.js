@@ -16,7 +16,7 @@ export const fetchParks = new ActionFirst(
 export const fetchAndSaveParks = new Action(
     async ({resolve, reject}) => {
         try {
-            const parks = fetchParks.execute()
+            const parks = await fetchParks.execute()
             parksStore.setParks(parks);
             resolve(parks)
         } catch (error) {

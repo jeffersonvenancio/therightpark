@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "axios-endpoints": "0.0.2",
+    "controlled-actions": "0.0.1",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4"
