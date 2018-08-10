@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
-
+import { inject, observer } from "mobx-react";
 import car from "../../assets/car.png";
 import prefIcon from "../../assets/prefIcon.svg";
+import slotsStore from '../../store/slotsStore';
 
 class RightPane extends Component {
     state = {  }
     render() { 
+        const { parksStore, slotsStore } = this.props;
+        const { slots } = slotsStore;
+        
         return ( 
             <div className="right-pane">
                 <div className="slots">
-                    <Slot occupied irregular />
-                    <Slot pref carPlate="Carro 1" />
+                    {
+                        Array.from(slots).map(slot => {
+                            const occupied = parksStore.isSlotOcupied(slot)
+                            return (
+                                <Slot
+                                    name={slot.label}
+                                    occupied={occupied}
+                                    irregular
+                                    pref={slot.pref}
+                                />
+                            )
+                        })
+                    }
                 </div>
             </div>
         );
@@ -21,6 +36,7 @@ const Slot = ({
     occupied = false,
     pref = false,
     irregular = false,
+    name = "Vaga",
     carPlate = ""
 }) => {
     return ( 
@@ -53,7 +69,7 @@ const Slot = ({
                         </div>
                     )
                 }
-                <h1><b>Vaga 1</b> {pref ? " (Preferencial)" : ""} </h1>
+                <h1><b>{name}</b> {pref ? " (Preferencial)" : ""} </h1>
                 <p className="car">{carPlate}</p>
             </div>
         </div>
@@ -62,4 +78,4 @@ const Slot = ({
  
 
 
-export default RightPane;
+export default inject(s => s)(observer(RightPane));

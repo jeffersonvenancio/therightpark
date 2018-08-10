@@ -5,6 +5,15 @@ import { startParksPolling } from '../actions/parksActions';
 import LeftPane from './LeftPane/LeftPane';
 import RightPane from './RightPane/RightPane';
 
+import { Provider } from "mobx-react";
+import slotsStore from '../store/slotsStore';
+import parksStore from '../store/parksStore';
+
+const stores = {
+  slotsStore,
+  parksStore
+}
+
 class App extends Component {
   async componentDidMount() {
     await fetchAndSaveSlots.execute();
@@ -15,9 +24,11 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <RightPane />
-      </div>
+      <Provider {...stores}>
+        <div className="App">
+          <RightPane />
+        </div>
+      </Provider>
     );
   }
 }
