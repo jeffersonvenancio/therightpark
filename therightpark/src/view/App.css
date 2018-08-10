@@ -1,0 +1,16 @@
+@import './reset.css';
+
+.App {
+  text-align: center;
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh
+}
+
+.left-pane {
+  width: 10em;
+}
+
+.right-pane {
+  flex-grow: 1;
+}
