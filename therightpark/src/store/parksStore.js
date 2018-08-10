@@ -19,11 +19,16 @@ class ParksStore {
     isSlotOcupied = slot => {
         const now = moment();
         this.parksOfASlot(slot).filter(park => {
-            console.log()
+            console.log(
+                moment(park.dateOut, "DD/MM/YYYY HH:mm:ss").format(),
+                moment(park.dateOut, "DD/MM/YYYY HH:mm:ss").subtract(3, 'hours').format(),
+                now.format(),
+                moment(park.dateOut, "DD/MM/YYYY HH:mm:ss").subtract(3, 'hours').isAfter(now) 
+            )
         });
         
-        const parks = this.parksOfASlot(slot).filter(park => moment(park.dateOut, "DD/MM/YYYY HH:mm:ss").subtract(3, 'hours').isAfter(now) || park.dateOut === null || park.dateOut === undefined);
-        return parks.length > 0
+        const parks = this.parksOfASlot(slot).filter(park =>  park.dateOut === null || park.dateOut === undefined);
+        return { occupied: parks.length > 0, regular: parks[0] && parks[0].regular }
     }
 
     setParks = action(parks =>{

@@ -15,12 +15,12 @@ class RightPane extends Component {
                 <div className="slots">
                     {
                         Array.from(slots).map(slot => {
-                            const occupied = parksStore.isSlotOcupied(slot)
+                            const {occupied, regular} = parksStore.isSlotOcupied(slot)
                             return (
                                 <Slot
                                     name={slot.label}
                                     occupied={occupied}
-                                    irregular
+                                    irregular={!regular}
                                     pref={slot.pref}
                                 />
                             )
