@@ -28,7 +28,12 @@ class ParksStore {
         });
         
         const parks = this.parksOfASlot(slot).filter(park =>  park.dateOut === null || park.dateOut === undefined);
-        return { occupied: parks.length > 0, regular: parks[0] && parks[0].regular }
+        parks[0] && console.log(parks[0].car.plate);
+        return { 
+            occupied: parks.length > 0, 
+            regular: parks[0] && parks[0].regular,
+            carplate: parks[0] && parks[0].car.plate,
+        }
     }
 
     setParks = action(parks =>{

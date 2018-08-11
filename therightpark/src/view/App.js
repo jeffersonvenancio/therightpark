@@ -16,7 +16,7 @@ const stores = {
 
 class App extends Component {
   async componentDidMount() {
-    await fetchAndSaveSlots.execute();
+    fetchAndSaveSlots.execute();
     this.stopPolling = await startParksPolling.execute();
   }
   componentWillUnmount() {
